@@ -1,75 +1,93 @@
-# 🔥 FireAlert AI System – Real-time Fire Detection & Alerting
 
-This is an AI-integrated *fire detection system* designed to predict potential fire hazards using real-time data from gas, temperature, and smoke sensors. The system is deployed on an *ESP32* microcontroller and planned to send *real-time alerts* through a *Flutter-based mobile app. Currently, the AI model is being developed using **Edge Impulse, with a roadmap to upgrade to a **custom AI model built from scratch*.
 
----
 
-## 🚀 Project Phases
 
-- [x] Phase 1: Train AI model using Edge Impulse
-- [ ] Phase 2: Deploy model on ESP32 and trigger buzzer alerts
-- [ ] Phase 3: Build Flutter app for fire alerts and status monitoring
-- [ ] Phase 4: Upgrade to a self-built AI model using Python (from scratch)
 
----
+# 🔥 AI-Based Fire Detection System (ESP32 + Edge Impulse + Flutter)
 
-## 🧠 Key Features
+An AI-powered fire detection system that uses real-time sensor data to detect fire and send alerts via buzzer (hardware) and a Flutter app (software, in progress). The AI model is trained and deployed using Edge Impulse.
 
-- ✅ Sensor-based fire prediction using AI
-- ✅ Buzzer alarm for immediate local alerts
-- 🔜 Mobile alert notifications (Flutter app)
-- 🔜 Upgrade to custom AI model for improved control and accuracy
+## 🌟 Features
 
----
+- Real-time fire prediction using AI (Edge Impulse)
+- Alerts through buzzer (hardware) and app (software)
+- Sensor data: gas, smoke, temperature, and IR
+- Flutter app (upcoming) for monitoring and notifications
 
-## 🔧 Hardware Used
+## 🧠 Sensors Used
 
-| Component                  | Description                         |
-|----------------------------|-------------------------------------|
-| ESP32                      | Microcontroller for processing      |
-| MQ-2 Gas Sensor            | Detects smoke and flammable gases   |
-| DHT22 Temperature Sensor   | Measures temperature and humidity   |
-| IR Proximity Sensor        | Detects physical obstacles/motion   |
-| Buzzer                     | Sounds alarm during fire detection  |
+- MQ-2 Gas Sensor
+- DHT22 Temperature & Humidity Sensor
+- IR Proximity Sensor
 
----
+## ⚙ Edge Impulse CLI Setup
 
-## ⚙ AI Model (Current)
+1. *Install Node.js* → [nodejs.org](https://nodejs.org/)  
+2. *Install CLI*  
+   ```bash
+   npm install -g edge-impulse-cli
 
-- Platform: *Edge Impulse*
-- Dataset: Collected from gas, temperature, and IR sensors
-- Purpose: Detect patterns indicating possible fire risks
-- Deployment Target: *ESP32* (TinyML model via Edge Impulse)
+3. Login & Connect
 
----
+edge-impulse-daemon
+edge-impulse-data-forwarder
 
-## 📱 Flutter App (Planned)
+Map sensor data to Edge Impulse features.
+
+
+
+4. Train your model on studio.edgeimpulse.com
+
+
+5. Deploy to ESP32 by exporting Arduino Library from Edge Impulse and uploading it using Arduino IDE.
+
+
+
+🚀 How It Works
+
+ESP32 collects data from sensors.
+
+Edge Impulse model classifies the data as FIRE or NO FIRE.
+
+If fire is detected:
+
+Buzzer triggers.
+
+(Upcoming) App sends alert to the user.
+
+
+
+📱 App Integration (Upcoming)
 
 The Flutter app will:
-- Display real-time fire detection status
-- Send push alerts when fire is detected
-- Optionally display alert history and temperature graphs
 
-Backend:
-- Firebase (Realtime DB or Firestore)
-- Alternatively, REST API with Flask
+Connect to ESP32 data via Firebase (or REST API)
 
----
+Show real-time fire detection status
 
-## 🔄 Planned Upgrade: Custom AI from Scratch
+Trigger push notifications when fire is detected
 
-This project will evolve from Edge Impulse to a fully *custom-built AI model* trained from scratch using Python and deployed manually.
+Allow manual refresh or live updates
 
-### 🎯 Goals:
-- Full control over preprocessing, training, and architecture
-- Learn model behavior for improvement
-- Expand dataset and use more advanced models if required
 
-### 🧪 Planned Tech Stack:
+Planned Flutter Stack
 
-| Task              | Tools/Libraries                        |
-|-------------------|----------------------------------------|
-| Data Collection   | Arduino → CSV Logs                     |
-| Model Training    | Python, Pandas, Scikit-learn, TensorFlow/Keras |
-| Deployment        | TFLite / Flask REST API to ESP32       |
-| Alert System      | Flutter + Firebase                     |
+Flutter for UI
+
+Firebase Realtime DB (or API) to sync ESP32 data
+
+Push Notifications using Firebase Cloud Messaging (FCM)
+
+Provider or Riverpod for state management
+
+Simple UI: Fire status, last update time, and buzzer status
+
+
+📦 Project Structure
+
+├── hardware/           # ESP32 + Arduino code
+├── edge-impulse/       # AI model files (trained & deployed)
+├── flutter-app/        # Flutter source (to be added)
+├── docs/               # Images, schematics, model screenshots
+└── README.md
+
