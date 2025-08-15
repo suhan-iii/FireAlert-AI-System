@@ -3,7 +3,7 @@
 
 
 
-# 🔥 AI-Based Fire Detection System (ESP32 + Edge Impulse + Flutter)
+# 🔥 FireGuard
 
 An AI-powered fire detection system that uses real-time sensor data to detect fire and alert users via hardware (buzzer) and software (Flutter app - in progress). Built using Edge Impulse for ML deployment on ESP32.
 
