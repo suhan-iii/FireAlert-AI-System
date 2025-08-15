@@ -1,0 +1,79 @@
+# 🔧 FireGuard AI — Hardware Setup
+
+This guide explains how to *connect and configure the hardware* for the FireGuard AI fire detection system.
+
+---
+
+## 📋 Components Required
+- *ESP32* (38-pin recommended)
+- *MQ-2 Gas & Smoke Sensor*
+- *DHT22 Temperature & Humidity Sensor*
+- *IR Proximity Sensor* (optional)
+- *Active Buzzer*
+- Breadboard & jumper wires
+- USB cable for ESP32 connection
+- Power source (via USB or regulated supply)
+
+---
+
+## 📌 Pin Connections
+
+| Component            | Pin on Sensor | ESP32 Pin | Notes |
+|----------------------|--------------|-----------|-------|
+| *MQ-2*             | VCC          | 3.3V      | Use 3.3V for ESP32 compatibility |
+|                      | GND          | GND       |       |
+|                      | A0           | GPIO 34   | Analog input |
+| *DHT22*            | VCC          | 3.3V      |       |
+|                      | GND          | GND       |       |
+|                      | Data         | GPIO 4    | Requires pull-up resistor (10kΩ) |
+| *IR Sensor* (opt)| VCC          | 3.3V      |       |
+|                      | GND          | GND       |       |
+|                      | OUT          | GPIO 27   | Digital input |
+| *Buzzer*           | +            | GPIO 25   | PWM-capable pin recommended |
+|                      | -            | GND       |       |
+
+---
+
+## 🖼 Wiring Diagram
+![Circuit Diagram](docs/circuit_diagram.png)  
+*(Save this image in your docs/ folder so it loads here)*
+
+---
+
+## ⚙ Power Considerations
+- The ESP32’s *3.3V pin* can power the sensors.
+- If adding more components, use an *external power supply* (regulated 3.3V) to avoid instability.
+- Avoid powering the MQ-2 from 5V when connected to ESP32 analog pins.
+
+---
+
+## 🔌 Steps to Assemble
+1. Place ESP32 on a breadboard.
+2. Connect each sensor according to the table above.
+3. Double-check VCC and GND connections — wrong polarity can damage components.
+4. Connect the buzzer’s + pin to GPIO 25, - pin to GND.
+5. Plug ESP32 into your computer via USB.
+6. Upload the Arduino .ino file from the hardware/ folder.
+
+---
+
+## ✅ Testing Hardware
+1. Use individual sensor test scripts before full integration.
+2. Open Arduino Serial Monitor at *115200 baud*.
+3. Verify each sensor outputs expected values before running the AI model.
+
+---
+
+## 📂 Related Files
+- [Main Integrated Arduino Code](../hardware/fireguard_ai.ino)  
+- [MQ-2 Sensor Test Code](../hardware/mq2_test.ino)  
+- [DHT22 Sensor Test Code](../hardware/dht22_test.ino)  
+- [Wiring Diagram Image](../docs/circuit_diagram.png)
+
+---
+
+## 📜 Notes
+- Keep wires short to reduce interference.
+- MQ-2 sensors require *pre-heating* (about 1–2 minutes) before stable readings.
+- If using IR sensor, adjust the potentiometer for detection sensitivity.
+
