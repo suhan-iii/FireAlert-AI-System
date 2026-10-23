@@ -1,30 +1,27 @@
-
-
-
-
-
 # 🔥 FireGuard
 
-An AI-powered fire detection system that uses real-time sensor data to detect fire and alert users via hardware (buzzer) and software (Flutter app - in progress). Built using Edge Impulse for ML deployment on ESP32.
+An AI-powered fire detection system that uses real-time sensor data to detect fire conditions and alert users through hardware and a web dashboard. The system is built around an ESP32-based sensor node running an Edge Impulse ML model, with a React frontend, FastAPI backend, and PostgreSQL database for monitoring, alerts, and historical analysis.
 
 ---
 
 ## 🔍 Project Overview
 
-This project integrates *Edge AI, **IoT hardware, and **mobile development* to provide a low-cost, scalable fire detection solution. It’s built with modularity in mind, so hardware and software work both independently and together.
+This project combines Edge AI, IoT hardware, and modern web application development to provide a low-cost, scalable fire detection solution for homes, warehouses, and industrial environments. The system continuously reads sensor values from an ESP32 device, runs AI-based inference to detect fire risk, triggers local hardware alerts, and sends event data to a central web platform for remote monitoring.
 
-✅ *Completed:*
+✅ Completed:
 - Sensor integration with ESP32
-- AI model training & on-device inference
+- AI model training and on-device inference
 - Buzzer alerts based on AI predictions
-- Clean and documented code structure
+- Real-time event capture and alert processing
 
-🚧 *In Progress:*
-- Flutter app for real-time status and mobile alerts
-- Firebase integration for syncing and storing alerts
-- Push notifications via Firebase Cloud Messaging (FCM)
+🚧 In Progress:
+- React web dashboard for live status and historical alerts
+- FastAPI backend for API services and alert logic
+- PostgreSQL database for storing incidents and sensor records
+- Real-time monitoring and admin controls
 
-🎯 *Goal:* A complete end-to-end fire detection system for home/industry safety with app monitoring and instant alerts.
+🎯 Goal:
+A complete end-to-end fire detection system with local alerts, cloud/backend integration, and a web interface for monitoring fire events in real time.
 
 ---
 
@@ -32,106 +29,111 @@ This project integrates *Edge AI, **IoT hardware, and **mobile development* to p
 
 - AI-based fire detection using Edge Impulse
 - Real-time sensor data processing on ESP32
-- Immediate buzzer alerts
-- Flutter app (upcoming) for remote monitoring and alerts
-- Modular hardware-software architecture
+- Buzzer alerts for local emergency response
+- Web application built with React for monitoring and control
+- FastAPI-based backend for APIs and logic processing
+- PostgreSQL database for storing alerts, events, and historical data
+- Modular hardware-software architecture for easy expansion
 
 ---
 
 ## 🧠 Sensors Used
 
-- *MQ-2* – Gas & Smoke Sensor  
-- *DHT22* – Temperature & Humidity Sensor  
-- *IR Proximity Sensor* – (Optional)
+- MQ-2 – Gas & Smoke Sensor
+- DHT22 – Temperature & Humidity Sensor
+- IR Proximity Sensor – Optional
 
 ---
 
-## ⚙ Edge Impulse CLI Setup
+## ⚙️ Edge Impulse CLI Setup
 
-1. *Install Node.js* → [https://nodejs.org](https://nodejs.org)  
-2. *Install Edge Impulse CLI*  
+1. Install Node.js → https://nodejs.org
+2. Install Edge Impulse CLI
+
    ```bash
    npm install -g edge-impulse-cli
+   ```
 
-3. Login & Connect Device
+3. Log in and connect the device
 
-edge-impulse-daemon
+   ```bash
+   edge-impulse-daemon
+   ```
 
+4. Stream sensor data
 
-4. Stream Sensor Data
+   ```bash
+   edge-impulse-data-forwarder
+   ```
 
-edge-impulse-data-forwarder
+5. Train the model in Edge Impulse Studio
 
-Map sensor data to features in the browser
+6. Deploy the model
 
-
-
-5. Model Training
-
-Use Edge Impulse Studio to collect data, train, and test
-
-
-
-6. Deploy
-
-Export Arduino library → Import into Arduino IDE → Upload to ESP32
-
-
-
-
+   Export the Arduino library, import it into the Arduino IDE, and upload it to the ESP32.
 
 ---
 
-🚀 How It Works
+## 🚀 How It Works
 
-ESP32 reads live data from sensors.
+ESP32 reads live data from connected sensors.
 
-AI model (from Edge Impulse) predicts fire presence.
+The AI model (trained in Edge Impulse) analyzes the incoming sensor values and predicts whether a fire risk is present.
 
 If fire is detected:
-
-Buzzer activates
-
-(Later) App notifies user via push notification
-
-
-
+- the buzzer is triggered locally
+- the event is sent to the backend
+- the web dashboard updates with the alert
+- the alert is stored in PostgreSQL for review and reporting
 
 ---
 
-📱 App Integration (Upcoming)
+## 🌐 Web Application Stack
 
-The Flutter app will:
+The software platform for this project is built using:
 
-Display real-time fire detection status
+- React – frontend dashboard and user interface
+- FastAPI – backend API and business logic
+- PostgreSQL – persistent storage for alerts and sensor data
 
-Sync with Firebase (Realtime Database)
-
-Send mobile push alerts using FCM
-
-Show buzzer status, timestamps, and event logs
-
-
-Planned Stack
-
-Flutter for UI
-
-Firebase for backend sync
-
-FCM for notifications
-
-Provider or Riverpod for state management
-
-
+The web app will provide:
+- live fire status overview
+- alert history and event logs
+- dashboard charts and analytics
+- admin controls and monitoring panels
+- secure API connectivity with the ESP32 system
 
 ---
 
-📦 Project Structure
+## 📦 Project Structure
 
+```text
 ├── hardware/           # ESP32 + Arduino code
-├── edge-impulse/       # ML model files & deployment
-├── flutter-app/        # Flutter code (to be added)
-├── docs/               # Images, schematics, logs
-└── README.md
+├── edge-impulse/       # ML model files and deployment assets
+├── web/                # React frontend application
+├── api/                # FastAPI backend services
+├── database/           # SQL schema and migration files
+├── docs/               # Images, schematics, and logs
+├── README.md
+└── .gitignore
+```
 
+---
 
+## 🏗️ Recommended Architecture
+
+```text
+ESP32 Sensor Node
+      ↓
+AI Fire Detection Model
+      ↓
+Local Buzzer Alert
+      ↓
+FastAPI Backend
+      ↓
+PostgreSQL Database
+      ↓
+React Web Dashboard
+```
+
+This architecture allows the system to detect fire conditions quickly at the edge while also providing a user-friendly monitoring interface for real-time and historical review.
