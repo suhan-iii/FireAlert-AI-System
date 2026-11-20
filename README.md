@@ -137,3 +137,5 @@ React Web Dashboard
 ```
 
 This architecture allows the system to detect fire conditions quickly at the edge while also providing a user-friendly monitoring interface for real-time and historical review.
+
+
